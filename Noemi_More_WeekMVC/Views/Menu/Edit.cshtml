@@ -1,0 +1,16 @@
+﻿@model MenuViewModel
+<h1>Modifica Menu</h1>
+@{
+    ViewBag.Readonly = true;
+}
+
+<form method="post">
+
+
+    <partial name="_Form" model="Model" />
+
+    <input type="submit" value="Modifica" class="tbn btn-primary" />
+    <input type="reset" value="Reset" class="=btn btn-primary" />
+    <a class="btn btn-primary" asp-controller="Menu" asp-action="Index" role="button">Indietro</a>
+
+</form>

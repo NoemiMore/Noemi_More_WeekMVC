@@ -1,0 +1,44 @@
+﻿@model List<MenuViewModel>
+
+<h1>Ecco la Lista dei Menu</h1>
+@if (User.IsInRole("Administrator"))
+{
+    <a class="btn btn-primary" asp-controller="Menu" asp-action="Create" type="button">Inserisci Nuovo Menu</a>
+}
+
+<table class="table table-hover table-bordered table table-striped">
+    <thead>
+        <tr>
+            <th>Codice</th>
+            <th>Nome</th>
+          
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.IdMenu</td>
+                <td>@item.Nome</td>
+               
+                <th>
+                    <a asp-controller="Menu" asp-action="Details" asp-route-id="@item.IdMenu" class="btn btn-primary">Visualizza Dettagli</a>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a asp-controller="Menu" asp-action="Edit" asp-route-id="@item.IdMenu" class="btn btn-primary">Modifica</a>
+                        <a asp-controller="Menu" asp-action="Delete" asp-route-id="@item.IdMenu" class="btn btn-danger">Elimina</a>
+                    }
+                </th>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Totale</th>
+            <th>@Model.Count</th>
+          
+            <th></th>
+        </tr>
+    </tfoot>
+</table>
